@@ -1,2 +1,19 @@
+#!/bin/bash
+
+if [[ $(which java) ]]; then
+    echo "Java is already installed"
+else
+    printf "Downloading Java..."
+    printf "$(sudo apt-get install default-jre)"
+fi
+if [[ $(which wget) ]]; then
+    echo "wget is alerady installed"
+else
+    printf "Downloading wget..."
+    printf "$(sudo apt-get install wget)"
+fi
 printf "$(wget https://launcher.mojang.com/v1/objects/1b557e7b033b583cd9f66746b7a9ab1ec1673ced/server.jar)"
-printf("$(java -Xmx1024M -Xms1024M -jar minecraft_server.1.16.5.jar nogui)")
+printf "$(java -Xmx1024M -Xms1024M -jar server.jar nogui >/dev/null 2>&1)"
+printf "$(sed -i 's/false/true/' eula.txt)"
+printf "$(touch server.sh && echo java -Xmx2G -Xms1024M -jar server.jar nogui >> server.sh)"
+printf "$(chmod +x server.sh)"
