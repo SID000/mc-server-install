@@ -1,5 +1,4 @@
 #!/bin/bash
-
 if [[ $(which java) ]]; then
     echo "Java is already installed"
 else
@@ -13,7 +12,4 @@ else
     printf "$(sudo apt-get install wget)"
 fi
 printf "$(wget https://launcher.mojang.com/v1/objects/1b557e7b033b583cd9f66746b7a9ab1ec1673ced/server.jar)"
-printf "$(java -Xmx1024M -Xms1024M -jar server.jar nogui >/dev/null 2>&1)"
-printf "$(sed -i 's/false/true/' eula.txt)"
-printf "$(touch server.sh && echo java -Xmx2G -Xms1024M -jar server.jar nogui >> server.sh)"
-printf "$(chmod +x server.sh)"
+printf "$(java -Xmx2G -Xms1024M -jar server.jar >/dev/null 2>&1 && touch server.sh && echo java -Xmx2G -Xms1024M -jar server.jar nogui >> server.sh && chmod +x server.sh)"
